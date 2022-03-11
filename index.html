@@ -3,18 +3,20 @@
     <head>
         <meta charset="UTF-8">
         <title>Space for everybody</title>
-        <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" type="text/css" href="index.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <div id="header">
             <h1>Space for everybody</h1>
-        </div>
-        <div id="menu">
-            <button id="menuButton">Menu</button>
-            <div id="menuContent">
-                <a href="">Space Invaders</a>
-            </div>
-        </div>
+            <div class="dropdown">
+                <button class="btn"><i class="fa fa-bars"></i> Menu</button>
+                <div class="dropdown-content">
+                    <a href="#"><i class="fa fa-rocket"></i> Space Invaders</a>
+                    <a href="#"><i class="fa fa-leanpub"></i> History Album</a>
+                    <a href="#"><i class="fa fa-star-o"></i> Constellations</a>
+                </div>
+              </div>
         <div id="solarSystem">
             <div class="object" id="sun"></div>
             <div class="object planet" id="mercury"></div>
@@ -37,6 +39,7 @@
             <div class="object p-orbit"></div>
             <div class="object" id="m-orbit"></div>
         </div>
+          
     </body>
     <script src="index.js"></script>
 </html>
