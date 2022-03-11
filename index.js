@@ -43,9 +43,15 @@ function earthY(){
 
 var clicks = 0;
 
+var modal = document.getElementById("modal");
+var span = document.getElementsByClassName("close")[0];
+var info = document.querySelectorAll('.info');
+
 function objInfo(element){
     clicks += 1;
     
+    obj = element.value;
+
     let buf_m_vel = 5;
     let buf_p_vel = [0.8, 0.59, 0.5, 0.4, 0.22, 0.16, 0.12, 0.09];
 
@@ -54,12 +60,15 @@ function objInfo(element){
         for(let i = 0; i < p_radians.length; i++){
             p_velocities[i] = 0;
         }
+        modal.style.display = "block";
+        
     }
     if((clicks % 2) == 0){
         m_velocity = buf_m_vel;
         for(let i = 0; i < p_radians.length; i++){
             p_velocities = buf_p_vel;
         };
+        modal.style.display = "none";
     }
 
     console.log(clicks);
@@ -67,3 +76,7 @@ function objInfo(element){
     console.log(p_velocities);
     console.log(buf_p_vel);
 };
+
+span.onclick = function(){
+    modal.style.display = "none";
+}
