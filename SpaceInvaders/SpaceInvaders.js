@@ -4,7 +4,7 @@ const FIRE_KEY = 70;
 const DIRECTION_DOWN = -1;
 const DIRECTION_UP = 1;
 
-var n;
+var ballID = 1;
 
 const GAME_WIDTH = 1300;
 const GAME_HEIGHT = 900;
@@ -15,7 +15,7 @@ enemies = [];
 const STATE = {
     x_pos: 0,
     y_pos: 0,
-    spaceship_width: 50
+    spaceship_width: 120
 }
 
 function setPosition($element, x, y) {
@@ -31,6 +31,7 @@ window.onload = function(){
     //loadBosses();
     //spawnBoss();
 };
+
 
 function loadBosses(){
     let boss1 = {
@@ -124,51 +125,112 @@ function playerControlls(key){
     }
 
     if(keyNum == FIRE_KEY){
-        let player = document.getElementsByClassName('player');
         let x = STATE.x_pos;
         let y = STATE.y_pos;
-        shoot(n, 1, x, y);
-        n++;
+        console.log(x, y);
+        shoot(ballID, 1, x, y);
+        ballID++;
+    }
+
+    if(keyNum == KEY_LEFT){
+        let player = document.getElementById("player");
+        let x = player.x;
+        let y = STATE.y_pos;
+        movePlayer(keyNum, x, y)
+    }
+    if(keyNum == KEY_RIGHT){
+        let player = document.getElementById("player");
+        let x = player.x;
+        let y = STATE.y_pos;
+        movePlayer(keyNum, x, y)
     }
 }
 
 function shoot(id, direction, x, y){
+    drawFireball(id, x, y)
+    moveFireball(id, x,y);
+}
+
+function drawFireball(id, x, y){
     let image = '../images/fireball-removebg-preview.png';
     let imageItem = document.createElement('img');
     imageItem.src = image;
     imageItem.id = id;
-    imageItem.style.left = `${x}px`;
-    imageItem.style.top = `${y}px`; 
     imageItem.style.position = 'relative';
     imageItem.style.display = 'flex';
+    setSize(imageItem, 125);
+    console.log(x, y);
+    
+    setPosition(imageItem, x, y);
     const $box = document.querySelector(".game");
-    setSize(imageItem, 50);
     $box.appendChild(imageItem);
-    moveFireball(id, y);
 }
 
-function moveFireball(fireballId, startY){
+
+
+function moveFireball(fireballId, x, startY){
     let fireball = document.getElementById(fireballId);
-    for (let i = startY; i >= 0; i--){
-        fireball.style.top = `${i}px`;
-        setTimeout(function() {
-        }, 1000 / 30);
-    }
+    console.log(startY);
+    let y = startY;
+    var int = setInterval(function() {
+        if(y >= -300){
+            y -= 5;
+            setPosition(fireball, x, y);
+
+            //drawFireball(fireballId, x, y);
+        }
+        else{
+            clearInterval(int);
+            
+        }
+    }, 1000 / 30);
+   
     const $box = document.querySelector(".game");
-    $box.removeChild(fireball);
-    
+    //fireball.parentNode.removeChild(fireball);
+}
+
+function drawPlayer(x, y){
+    const $player = document.createElement("img");
+    $player.style.position = 'relative';
+    $player.style.display = 'flex';
+    $player.src = '../images/red_ship-removebg-preview.png';
+    $player.className = "player";
+    $player.id = "player";
+
+    setSize($player, STATE.spaceship_width);
+    setPosition($player, x, y)
+    $box.appendChild($player);
+}
+
+function movePlayer(key, x, y){
+    let player = document.getElementById("player")
+    const $box = document.querySelector(".game");
+
+    if(key == KEY_LEFT){
+        player.parentNode.removeChild(player);
+        for(var i = 1; i < 11; i++){
+            STATE.x_pos -= 0.5;
+        }
+        drawPlayer(STATE.x_pos, STATE.y_pos);
+    }
+    else if(key == KEY_RIGHT){
+        player.parentNode.removeChild(player);
+        STATE.x_pos += 5;
+        drawPlayer(STATE.x_pos, STATE.y_pos);
+    }
 }
 
 //Player
 function createPlayer($box) {
-    STATE.x_pos = GAME_WIDTH / 2;
-    STATE.y_pos = GAME_HEIGHT / 2;
+    STATE.x_pos = GAME_WIDTH - 750;
+    STATE.y_pos = GAME_HEIGHT - 100;
 
     const $player = document.createElement("img");
     $player.style.position = 'relative';
     $player.style.display = 'flex';
     $player.src = '../images/red_ship-removebg-preview.png';
     $player.className = "player";
+    $player.id = "player";
 
     
     $box.appendChild($player);
@@ -176,6 +238,8 @@ function createPlayer($box) {
     setSize($player, STATE.spaceship_width);
 }
 
+
+//
 
 //Game
 const $box = document.querySelector(".game");

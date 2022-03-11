@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Images",
+    "\\SpaceInvaders"
   ],
-  "SelectedNode": "\\README.md",
+  "SelectedNode": "\\SpaceInvaders\\SpaceInvaders.js",
   "PreviewInSolutionExplorer": false
 }
