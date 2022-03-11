@@ -3,7 +3,11 @@ body {
     background-color: rgb(30, 5, 35);
     margin: 0;
     padding: 0;
-    height: 200vmin;
+    height: 40vmin;
+}
+
+.solarSystem {
+    margin: none;
 }
 
 .object {
@@ -23,34 +27,18 @@ body {
     background: transparent;
 }
   
-#belt {
-    height: 97vmin;
-    width: 97vmin;
-    animation: spin 50s infinite linear;
-    margin-top: 50vmin;
-}
-  
-@keyframes spin{
-    0%{ transform: rotate(0deg) }
-    100%{ transform: rotate(360deg) }
-}
-  
 #m-orbit {
-    height: 8vmin;
-    width: 8vmin;
-}
-  
-.planet, #moon {
-    z-index: 100;
+    height: 0.8vmin;
+    width: 0.8vmin;
 }
   
 #sun {
-    border: 3px solid orange;
+    border: 2.5vimn solid orange;
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 10vmin;
-    width: 10vmin;
+    height: 2.5vmin;
+    width: 2.5vmin;
     background-color: orange;
 }
   
@@ -59,8 +47,8 @@ body {
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 1vmin;
-    width: 1vmin;
+    height: 0.1vmin;
+    width: 0.1vmin;
     background-color: white;
 }
   
@@ -70,8 +58,8 @@ body {
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 2vmin;
-    width: 2vmin;
+    height: 0.4vmin;
+    width: 0.4vmin;
 }
   
 #venus {
@@ -80,8 +68,8 @@ body {
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 3vmin;
-    width: 3vmin;
+    height: 0.6vmin;
+    width: 0.6vmin;
 }
   
 #earth {
@@ -90,8 +78,8 @@ body {
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 4vmin;
-    width: 4vmin;
+    height: 0.8vmin;
+    width: 0.8vmin;
 }
   
 #mars {
@@ -101,8 +89,8 @@ body {
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 3.5vmin;
-    width: 3.5vmin;
+    height: 0.7vmin;
+    width: 0.7vmin;
 }
   
 #jupiter {
@@ -111,8 +99,8 @@ body {
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 12vmin;
-    width: 12vmin;
+    height: 2vmin;
+    width: 2vmin;
 }
   
 #saturn {
@@ -121,8 +109,8 @@ body {
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 12vmin;
-    width: 12vmin;
+    height: 2vmin;
+    width: 2vmin;
 }
   
 #uranus {
@@ -131,8 +119,8 @@ body {
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 5vmin;
-    width: 5vmin;
+    height: 1vmin;
+    width: 1vmin;
 }
   
 #neptune {
@@ -141,8 +129,8 @@ body {
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 4vmin;
-    width: 4vmin;
+    height: 0.8vmin;
+    width: 0.8vmin;
 }
 
 h1 {
@@ -177,37 +165,80 @@ h1 {
     padding-top: 20px;
     padding-bottom: 20px;
     border: none;
-  }
-  .dropdown {
+}
+.dropdown {
     position: relative;
     display: inline-block;
     margin-top: 35px;
     margin-left: 15px;
-  }
+}
   
-  .dropdown-content {
+.dropdown-content {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-  }
+}
   
-  .dropdown-content a {
+.dropdown-content a {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+}
+  
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+  
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+  
+
+.btn {
+    border-radius: 25%;
+}
+
+.btn:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   }
   
-  .dropdown-content a:hover {background-color: #ddd;}
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
   
-  .dropdown:hover .dropdown-content {display: block;}
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
   
-
-  .btn {border-radius: 25%;}
-
-  .btn:hover {
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
   }

@@ -17,27 +17,33 @@
                     <a href="#"><i class="fa fa-star-o"></i> Constellations</a>
                 </div>
               </div>
-        <div id="solarSystem">
-            <div class="object" id="sun"></div>
-            <div class="object planet" id="mercury"></div>
-            <div class="object planet" id="venus"></div>
-            <div class="object planet" id="earth"></div>
-            <div class="object planet" id="mars"></div>
-            <div class="object planet" id="jupiter"></div>
-            <div class="object planet" id="saturn"></div>
-            <div class="object planet" id="uranus"></div>
-            <div class="object planet" id="neptune"></div>
-            <div class="object" id="moon"></div>
+        <div name="solarSystem" class="solarSystem" id="solarSystem">
+            <div name="sun" class="object star" id="sun" onclick="objInfo(this)"></div>
+            <div name="mercury" class="object planet" id="mercury" onclick="objInfo(this)"></div>
+            <div name="venus" class="object planet" id="venus" onclick="objInfo(this)"></div>
+            <div name="earth" class="object planet" id="earth" onclick="objInfo(this)"></div>
+            <div name="mars" class="object planet" id="mars" onclick="objInfo(this)"></div>
+            <div name="jupiter" class="object planet" id="jupiter" onclick="objInfo(this)"></div>
+            <div name="saturn" class="object planet" id="saturn"  onclick="objInfo(this)"></div>
+            <div name="uranus" class="object planet" id="uranus"  onclick="objInfo(this)"></div>
+            <div name="neptune" class="object planet" id="neptune"  onclick="objInfo(this)"></div>
+            <div name="moon" class="object" id="moon"  onclick="objInfo(this)"></div>
 
-            <div class="object p-orbit"></div>
-            <div class="object p-orbit"></div>
-            <div class="object p-orbit"></div>
-            <div class="object p-orbit"></div>
-            <div class="object p-orbit"></div>
-            <div class="object p-orbit"></div>
-            <div class="object p-orbit"></div>
-            <div class="object p-orbit"></div>
-            <div class="object" id="m-orbit"></div>
+            <div name="mercury" class="object p-orbit"  onclick="objInfo(this)"></div>
+            <div name="venus" class="object p-orbit"  onclick="objInfo(this)"></div>
+            <div name="earth" class="object p-orbit"  onclick="objInfo(this)"></div>
+            <div name="mars" class="object p-orbit"  onclick="objInfo(this)"></div>
+            <div name="jupiter" class="object p-orbit"  onclick="objInfo(this)"></div>
+            <div name="saturn" class="object p-orbit"  onclick="objInfo(this)"></div>
+            <div name="uranus" class="object p-orbit"  onclick="objInfo(this)"></div>
+            <div name="neptune" class="object p-orbit"  onclick="objInfo(this)"></div>
+            <div name="moon" class="object" id="m-orbit" onclick="objInfo(this)"></div>
+
+            <div class="modal" id="planet-modal">
+                <div class="modal-content"></div>
+                    <span class="close">&times;</span>
+                    <p>planet info</p>
+            </div>
         </div>
           
     </body>
