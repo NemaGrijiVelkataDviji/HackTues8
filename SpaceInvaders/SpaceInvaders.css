@@ -1,0 +1,39 @@
+body{
+    height: 100%;
+    overflow: hidden;
+    background-color: rebeccapurple;
+    
+}
+
+.wrap{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.spaceInvaders{
+    flex: auto;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game{
+    width: 1300px;
+    height: 900px;
+    background-color: darkgreen;
+    box-shadow: 0 2px 10px rgba(0,0,0,0);
+    position: relative;
+    z-index: auto;
+}
+
+.player{
+    z-index: 9;
+}
+
+header{
+    text-align: center;
+    background-color: purple;
+    color: aqua;
+    padding: 5px;
+}
