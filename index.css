@@ -1,0 +1,213 @@
+body {
+    
+    background-color: rgb(30, 5, 35);
+    margin: 0;
+    padding: 0;
+    height: 200vmin;
+}
+
+.object {
+    border-radius: 50%;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: translateY( 50vmin );
+}
+
+.p-orbit, #m-orbit{
+    border: 0.1vmin solid lightgrey;
+    opacity: 0.5;
+    background: transparent;
+}
+  
+#belt {
+    height: 97vmin;
+    width: 97vmin;
+    animation: spin 50s infinite linear;
+    margin-top: 50vmin;
+}
+  
+@keyframes spin{
+    0%{ transform: rotate(0deg) }
+    100%{ transform: rotate(360deg) }
+}
+  
+#m-orbit {
+    height: 8vmin;
+    width: 8vmin;
+}
+  
+.planet, #moon {
+    z-index: 100;
+}
+  
+#sun {
+    border: 3px solid orange;
+    border-radius: 50%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 10vmin;
+    width: 10vmin;
+    background-color: orange;
+}
+  
+#moon {
+    border: 3px solid whitesmoke;
+    border-radius: 50%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 1vmin;
+    width: 1vmin;
+    background-color: white;
+}
+  
+#mercury {
+    border: 3px solid red;
+    background-color: red;
+    border-radius: 50%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 2vmin;
+    width: 2vmin;
+}
+  
+#venus {
+    border: 3px solid orangered;
+    background-color: orangered;
+    border-radius: 50%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 3vmin;
+    width: 3vmin;
+}
+  
+#earth {
+    border: 3px solid seagreen;
+    background-color: seagreen;
+    border-radius: 50%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 4vmin;
+    width: 4vmin;
+}
+  
+#mars {
+    
+    border: 3px solid red;
+    background-color: orange;
+    border-radius: 50%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 3.5vmin;
+    width: 3.5vmin;
+}
+  
+#jupiter {
+    border: 3px solid orangered;
+    background-color: orangered;
+    border-radius: 50%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 12vmin;
+    width: 12vmin;
+}
+  
+#saturn {
+    border: 3px solid orangered;
+    background-color: orangered;
+    border-radius: 50%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 12vmin;
+    width: 12vmin;
+}
+  
+#uranus {
+    border: 3px solid orangered;
+    background-color: orangered;
+    border-radius: 50%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 5vmin;
+    width: 5vmin;
+}
+  
+#neptune {
+    border: 3px solid orangered;
+    background-color: orangered;
+    border-radius: 50%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 4vmin;
+    width: 4vmin;
+}
+
+h1 {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    color: bisque;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 6px 6px 10px purple;
+
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    border-radius: 25px;
+    margin-top: 30px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+    background-image: url("title_background.jpg");
+
+}
+
+.btn {
+    background-image: url("title_background.jpg");
+    color: bisque;
+    text-transform: uppercase;
+    text-shadow: 6px 6px 10px purple;
+    padding: 16px;
+    font-size: 16px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border: none;
+  }
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    margin-top: 35px;
+    margin-left: 15px;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  .dropdown:hover .dropdown-content {display: block;}
+  
+
+  .btn {border-radius: 25%;}
+
+  .btn:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+  }
