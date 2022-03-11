@@ -4,8 +4,8 @@ const FIRE_KEY = 70;
 const DIRECTION_DOWN = -1;
 const DIRECTION_UP = 1;
 
-var ball = 1;
-var ballID = `ball${ball}`;
+
+var ballID = 0.001;
 var enemyID = 1;
 
 const GAME_WIDTH = 1300;
@@ -13,6 +13,8 @@ const GAME_HEIGHT = 900;
 
 bosses = [];
 enemies = [];
+spawnedEnemies = [];
+spawnedBosses = [];
 fireballs = [];
 
 const STATE = {
@@ -36,6 +38,30 @@ window.onload = function(){
     //spawnBoss();
 };
 
+setInterval(() => {
+    //move player
+
+    //move balls
+
+    //spawn enemies
+
+    //move enemies
+    
+    //check collisions
+
+
+}, 1000 / 60);
+
+let yenemies = 100;
+    let interval = setInterval(() => {
+        yenemies += 2;
+        if(y <= 750){
+            setPosition(enemy, x, yenemies)
+        }
+        else{
+            $box.removeChild(enemy);
+            clearInterval(interval);
+        }
 
 function loadBosses(){
     let boss1 = {
@@ -101,22 +127,19 @@ function generateRandom(maxLimit){
 }
 
 function UpdateEnemy(enemy, x){
-    let y = 100;
-    let interval = setInterval(() => {
-        y += 5;
-        if(y <= 750){
-            setPosition(enemy, x, y)
-        }
-        else{
-            $box.removeChild(enemy);
-            clearInterval(interval);
-        }
-    }, 1000 / 60);
+    
+    
 }
 
 var interval = setInterval(() => {
     spawnEnemy();
+    checkCollision();
 }, 1000);
+
+
+function checkCollision(ball, enemy){
+
+}
 
 function spawnEnemy(){
     let index = generateRandom(enemies.length);
@@ -134,6 +157,8 @@ function spawnEnemy(){
     $box.appendChild(enemy);
 
 }
+
+
 
 function spawnBoss(){
     let bossIndex = generateRandom(bosses.length);
@@ -159,7 +184,7 @@ function playerControlls(key){
         let y = STATE.y_pos - 110;
         console.log(x, y);
         shoot(ballID, x, y);
-        ball++;
+        ballID += 0.001;
     }
 
     if(keyNum == KEY_LEFT){
@@ -181,6 +206,8 @@ function shoot(id, x, y){
     moveFireball(id, x,y);
 }
 
+
+
 function drawFireball(id, x, y){
     let image = '../images/fireball-removebg-preview.png';
     let imageItem = document.createElement('img');
@@ -189,16 +216,27 @@ function drawFireball(id, x, y){
     imageItem.style.position = 'absolute';
     imageItem.style.display = 'flex';
     setSize(imageItem, 125);
-    console.log(x, y);
-    fireballs.push(imageItem);
     setPosition(imageItem, x, y);
-    const $box = document.querySelector(".game");
     $box.appendChild(imageItem);
+    let ball = {
+        ballElement: imageItem,
+        coordX : x,
+        coordY : y,
+    }
+    fireballs.push(ball);
+    const $box = document.querySelector(".game");
+
+    return ball;
 }
 
 
 
 function moveFireball(fireballId, x, startY){
+
+    //cikul za celiq masiv
+
+
+
     let fireball = document.getElementById(fireballId);
     console.log(startY);
     let y = startY;
@@ -211,6 +249,7 @@ function moveFireball(fireballId, x, startY){
         }
         else{
             clearInterval(int);
+            console.log(fireball.id);
             fireball.parentNode.removeChild(fireball);
         }
     }, 1000 / 60);
@@ -237,17 +276,20 @@ function movePlayer(key){
 
     if(key == KEY_LEFT){
         for(var i = 1; i < 100; i++){
-            STATE.x_pos -= 0.1;
+            STATE.x_pos -= 0.5;
         }
         setPosition(player, STATE.x_pos, STATE.y_pos);
     }
     else if(key == KEY_RIGHT){
         for(var i = 1; i > -100; i--){
-            STATE.x_pos += 0.1;
+            STATE.x_pos += 0.5;
+            setPosition(player, STATE.x_pos, STATE.y_pos);
         }
-        setPosition(player, STATE.x_pos, STATE.y_pos);
+        
     }
 }
+
+
 
 //Player
 function createPlayer($box) {
