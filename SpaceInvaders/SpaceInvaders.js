@@ -4,7 +4,9 @@ const FIRE_KEY = 70;
 const DIRECTION_DOWN = -1;
 const DIRECTION_UP = 1;
 
-var ballID = 1;
+var ball = 1;
+var ballID = `ball${ball}`;
+var enemyID = 1;
 
 const GAME_WIDTH = 1300;
 const GAME_HEIGHT = 900;
@@ -30,6 +32,7 @@ function setSize($element, width) {
 
 window.onload = function(){
     loadBosses();
+    loadEnemies();
     //spawnBoss();
 };
 
@@ -65,23 +68,23 @@ function loadBosses(){
 
 function loadEnemies(){
     let enemy1 = {
-        img: 'imagePath1'
+        img: '../images/alien_spaceship.png'
     }
     
     let enemy2 = {
-        img: 'imagePath1'
+        img: '../images/alien_spaceship.png'
     }
     
     let enemy3 = {
-        img: 'imagePath1'
+        img: '../images/alien_spaceship.png'
     }
     
     let enemy4 = {
-        img: 'imagePath1'
+        img: '../images/alien_spaceship.png'
     }
     
     let enemy5 = {
-        img: 'imagePath1'
+        img: '../images/alien_spaceship.png'
     }
 
     enemies.push(enemy1);
@@ -97,14 +100,38 @@ function generateRandom(maxLimit){
     return rand;
 }
 
-function spawnEnemy(){
-    const $box = document.querySelector(".game");
-    let index = generateRandom(enemies.length);
-    let enemyImg = enemies[index];
-    let enemy = document.createElement('../images/alien_spaceship.png');
-    enemy.src = enemyImg.img;
-    $box.appendChild(enemy);
+function UpdateEnemy(enemy, x){
+    let y = 100;
+    let interval = setInterval(() => {
+        y += 5;
+        if(y <= 750){
+            setPosition(enemy, x, y)
+        }
+        else{
+            $box.removeChild(enemy);
+            clearInterval(interval);
+        }
+    }, 1000 / 60);
+}
 
+var interval = setInterval(() => {
+    spawnEnemy();
+}, 1000);
+
+function spawnEnemy(){
+    let index = generateRandom(enemies.length);
+    let enemyImg = enemies[index].img;
+    let enemy = document.createElement("img");
+    enemy.style.position = 'absolute';
+    enemy.src = enemyImg;
+    enemy.id = enemyID;
+    enemyID++;
+    setSize(enemy, 250);
+
+    let randX = generateRandom(1100);
+    setPosition(enemy, randX, 0)
+    UpdateEnemy(enemy, randX);
+    $box.appendChild(enemy);
 
 }
 
@@ -132,7 +159,7 @@ function playerControlls(key){
         let y = STATE.y_pos - 110;
         console.log(x, y);
         shoot(ballID, x, y);
-        ballID++;
+        ball++;
     }
 
     if(keyNum == KEY_LEFT){
@@ -181,14 +208,12 @@ function moveFireball(fireballId, x, startY){
                 y -= 0.0002;
             }
             setPosition(fireball, x, y);
-
-            //drawFireball(fireballId, x, y);
         }
         else{
             clearInterval(int);
             fireball.parentNode.removeChild(fireball);
         }
-    }, 1000 / 30);
+    }, 1000 / 60);
    
     const $box = document.querySelector(".game");
     
@@ -243,7 +268,6 @@ function createPlayer($box) {
 }
 
 
-//
 
 //Game
 const $box = document.querySelector(".game");
