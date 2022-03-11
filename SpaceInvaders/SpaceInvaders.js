@@ -11,6 +11,7 @@ const GAME_HEIGHT = 900;
 
 bosses = [];
 enemies = [];
+fireballs = [];
 
 const STATE = {
     x_pos: 0,
@@ -28,7 +29,7 @@ function setSize($element, width) {
 }
 
 window.onload = function(){
-    //loadBosses();
+    loadBosses();
     //spawnBoss();
 };
 
@@ -96,13 +97,15 @@ function generateRandom(maxLimit){
     return rand;
 }
 
-function spawEnemy(){
+function spawnEnemy(){
     const $box = document.querySelector(".game");
     let index = generateRandom(enemies.length);
     let enemyImg = enemies[index];
-    let enemy = document.createElement('img');
+    let enemy = document.createElement('../images/alien_spaceship.png');
     enemy.src = enemyImg.img;
     $box.appendChild(enemy);
+
+
 }
 
 function spawnBoss(){
@@ -125,10 +128,10 @@ function playerControlls(key){
     }
 
     if(keyNum == FIRE_KEY){
-        let x = STATE.x_pos;
-        let y = STATE.y_pos;
+        let x = STATE.x_pos + 3;
+        let y = STATE.y_pos - 110;
         console.log(x, y);
-        shoot(ballID, 1, x, y);
+        shoot(ballID, x, y);
         ballID++;
     }
 
@@ -146,7 +149,7 @@ function playerControlls(key){
     }
 }
 
-function shoot(id, direction, x, y){
+function shoot(id, x, y){
     drawFireball(id, x, y)
     moveFireball(id, x,y);
 }
@@ -156,11 +159,11 @@ function drawFireball(id, x, y){
     let imageItem = document.createElement('img');
     imageItem.src = image;
     imageItem.id = id;
-    imageItem.style.position = 'relative';
+    imageItem.style.position = 'absolute';
     imageItem.style.display = 'flex';
     setSize(imageItem, 125);
     console.log(x, y);
-    
+    fireballs.push(imageItem);
     setPosition(imageItem, x, y);
     const $box = document.querySelector(".game");
     $box.appendChild(imageItem);
@@ -173,50 +176,51 @@ function moveFireball(fireballId, x, startY){
     console.log(startY);
     let y = startY;
     var int = setInterval(function() {
-        if(y >= -300){
-            y -= 5;
+        if(y >= -80){
+            for(var i = 1; i < 100000; i++){
+                y -= 0.0002;
+            }
             setPosition(fireball, x, y);
 
             //drawFireball(fireballId, x, y);
         }
         else{
             clearInterval(int);
-            
+            fireball.parentNode.removeChild(fireball);
         }
     }, 1000 / 30);
    
     const $box = document.querySelector(".game");
-    //fireball.parentNode.removeChild(fireball);
+    
 }
 
 function drawPlayer(x, y){
     const $player = document.createElement("img");
-    $player.style.position = 'relative';
+    $player.style.position = 'absolute';
     $player.style.display = 'flex';
     $player.src = '../images/red_ship-removebg-preview.png';
     $player.className = "player";
     $player.id = "player";
 
     setSize($player, STATE.spaceship_width);
-    setPosition($player, x, y)
+    setPosition($player)
     $box.appendChild($player);
 }
 
-function movePlayer(key, x, y){
+function movePlayer(key){
     let player = document.getElementById("player")
-    const $box = document.querySelector(".game");
 
     if(key == KEY_LEFT){
-        player.parentNode.removeChild(player);
-        for(var i = 1; i < 11; i++){
-            STATE.x_pos -= 0.5;
+        for(var i = 1; i < 100; i++){
+            STATE.x_pos -= 0.1;
         }
-        drawPlayer(STATE.x_pos, STATE.y_pos);
+        setPosition(player, STATE.x_pos, STATE.y_pos);
     }
     else if(key == KEY_RIGHT){
-        player.parentNode.removeChild(player);
-        STATE.x_pos += 5;
-        drawPlayer(STATE.x_pos, STATE.y_pos);
+        for(var i = 1; i > -100; i--){
+            STATE.x_pos += 0.1;
+        }
+        setPosition(player, STATE.x_pos, STATE.y_pos);
     }
 }
 
