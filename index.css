@@ -1,0 +1,149 @@
+body {
+    background: purple;
+    margin: 0;
+    padding: 0;
+    height: 200vmin;
+  }
+  
+#solarSystem{
+
+}
+
+.object {
+    border-radius: 50%;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: translateY( 50vmin );
+}
+
+.p-orbit, #m-orbit{
+    border: 0.1vmin solid lightgrey;
+    opacity: 0.5;
+    background: transparent;
+}
+  
+#belt {
+    height: 97vmin;
+    width: 97vmin;
+    animation: spin 50s infinite linear;
+    margin-top: 50vmin;
+}
+  
+@keyframes spin{
+    0%{ transform: rotate(0deg) }
+    100%{ transform: rotate(360deg) }
+}
+  
+#m-orbit {
+    height: 8vmin;
+    width: 8vmin;
+}
+  
+.planet, #moon {
+    z-index: 100;
+}
+  
+#sun {
+    border: 3px solid orange;
+    border-radius: 50%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 10vmin;
+    width: 10vmin;
+    background-color: orange;
+}
+  
+#moon {
+    border: 3px solid whitesmoke;
+    border-radius: 50%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 1vmin;
+    width: 1vmin;
+    background-color: white;
+}
+  
+#mercury {
+    border: 3px solid red;
+    background-color: red;
+    border-radius: 50%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 2vmin;
+    width: 2vmin;
+}
+  
+#venus {
+    border: 3px solid orangered;
+    background-color: orangered;
+    border-radius: 50%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 3vmin;
+    width: 3vmin;
+}
+  
+#earth {
+    border: 3px solid seagreen;
+    background-color: seagreen;
+    border-radius: 50%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 4vmin;
+    width: 4vmin;
+}
+  
+#mars {
+    
+    border: 3px solid red;
+    background-color: orange;
+    border-radius: 50%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 3.5vmin;
+    width: 3.5vmin;
+}
+  
+#jupiter {
+    border: 3px solid orangered;
+    background-color: orangered;
+    border-radius: 50%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 12vmin;
+    width: 12vmin;
+}
+  
+#saturn {
+    border: 3px solid orangered;
+    background-color: orangered;
+    border-radius: 50%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 12vmin;
+    width: 12vmin;
+}
+  
+#uranus {
+    border: 3px solid orangered;
+    background-color: orangered;
+    border-radius: 50%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 5vmin;
+    width: 5vmin;
+}
+  
+#neptune {
+    border: 3px solid orangered;
+    background-color: orangered;
+    border-radius: 50%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 4vmin;
+    width: 4vmin;
+}
