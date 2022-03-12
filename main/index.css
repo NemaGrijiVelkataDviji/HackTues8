@@ -28,8 +28,8 @@ body {
 }
   
 #m-orbit {
-    height: 3.2vmin;
-    width: 3.2vmin;
+    height: 10vmin;
+    width: 10vmin;
 }
 
 #sun {
@@ -47,8 +47,8 @@ body {
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 0.5vmin;
-    width: 0.5vmin;
+    height: 5vmin;
+    width: 5vmin;
     background-color: white;
 }
   
@@ -151,12 +151,12 @@ h1 {
     margin-bottom: 0px;
     margin-right: 0px;
     margin-left: 0px;
-    background-image: url("title_background.jpg");
+    background-image: url("../Images/title_background.jpg");
 
 }
 
 .btn {
-    background-image: url("title_background.jpg");
+    background-image: url("../Images/title_background.jpg");
     color: bisque;
     text-transform: uppercase;
     text-shadow: 6px 6px 10px purple;

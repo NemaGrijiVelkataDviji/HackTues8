@@ -1,11 +1,14 @@
 const modal = document.getElementById("modal");
 
-function modalShow(){
+function modalShow(element){
 	modal.style.display = "block";
+	wikiContent(element);
 }
 function modalClose(){
 	modal.style.display = "none";
 }
+
+
 
 /*var clicks = 0;
 
