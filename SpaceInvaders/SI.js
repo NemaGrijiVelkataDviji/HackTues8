@@ -116,32 +116,45 @@ function createEnemy(){
 
 
 var bosses = [];
-var boss = {
-    x: 0,
-    y: 0,
-    health: 0,
-    element: document.createElement("img"),
-
-    draw(){
-        bossIndex = generateRandom(bossVariations.length),
-        currentBoss = bossVariations[bossIndex],
-        this.element.src = currentBoss.img //currentBoss.img;
-        this.health = currentBoss.health;
-        box.appendChild(this.element);
-    }
+function spawnBoss(){
+    var boss = {
+        x: 0,
+        y: 0,
+        health: 0,
+        element: document.createElement("img"),
     
+        draw(){
+            bossIndex = generateRandom(bossVariations.length),
+            currentBoss = bossVariations[bossIndex],
+            this.element.src = currentBoss.img //currentBoss.img;
+            this.element.style.position = 'absolute';
+            this.health = currentBoss.health;
+            box.appendChild(this.element);
+        },
+        
+        checkhealth(){
+            if(this.health <= 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    
+    }
+    return boss;
 }
+
 
 var bossVariations = []
 function loadBosses(){
     let boss1 = {
-        img: '../images/red_ship-removebg-preview.png',
+        img: '../images/mercury.png',
         health: 100,
     };
     bossVariations.push(boss1);
 
     let boss2 = {
-        img: '../images/red_ship-removebg-preview.png',
+        img: '../images/venus.png',
         heath: 150,
     };
 
@@ -149,11 +162,53 @@ function loadBosses(){
 
     
     let boss3 = {
-        img: '../images/red_ship-removebg-preview.png',
+        img: '../images/earth.png',
+        heath: 120,
+    };
+
+    bossVariations.push(boss3);
+
+    let boss4 = {
+        img: '../images/mars.png',
+        heath: 120,
+    };
+
+    bossVariations.push(boss4);
+
+    let boss5 = {
+        img: '../images/jupiter.png',
+        heath: 120,
+    };
+
+    bossVariations.push(boss5);
+    
+    let boss6 = {
+        img: '../images/saturn.png',
+        heath: 120,
+    };
+
+    bossVariations.push(boss6);
+    
+    let boss7 = {
+        img: '../images/uranus.png',
+        heath: 120,
+    };
+
+    bossVariations.push(boss7);
+    
+    let boss8 = {
+        img: '../images/neptun.png',
         heath: 120,
     };
     
-    bossVariations.push(boss3);
+    bossVariations.push(boss8);
+
+    let boss9 = {
+        img: '../images/sun.png',
+        heath: 120,
+    };
+    
+    bossVariations.push(boss9);
 }
 
 let k = 0;
@@ -176,21 +231,20 @@ setInterval(() => {
         }
     }
     //spawn enemies
-    
     k++;
-    if(k == 60){
+    if(k == 60 ){
         enemy = createEnemy();
         enemy.x = generateRandom(1190) -195;
         enemies.push(enemy);
         k = 0;
     }
+    
     for(let ka = 0; ka < enemies.length; ka++){
         
         enemies[ka].draw();
     }
     //move enemies
     for(let j = 0; j < enemies.length; j++){
-        console.log(enemies[j].y);
         enemies[j].y += 2;
         if(enemies[j].y >= 780){
             player.health -= 10;
@@ -214,6 +268,32 @@ setInterval(() => {
                     fireballs.splice(i, 1);
              }
         }
+        //check boss collision
+        if(bossSpawned == true){
+            if (fireballs[i].x < bosses[0].x + 800 &&
+                fireballs[i].x - 110 > bosses[0].x &&
+                fireballs[i].y < bosses[0].y + 50 &&
+                fireballs[i].y + 60 > bosses[0].y) {
+                    box.removeChild(fireballs[i].element);
+                    fireballs.splice(i, 1);
+                    bosses[0].health -= 10;
+                    if(bosses[0].checkhealth()){
+                        player.score += 10;
+                        box.removeChild(bosses[0].element);
+                        bosses.splice(0, 1);
+                    }
+             }
+        }
+    }
+
+    //spawn boss
+    if(player.score == 10){
+        for(let p = 0; p < enemies.length; p++){
+            box.removeChild(enemies[p].element);
+            enemies.splice(p, 1);
+        }
+        scoreboard.drawScore();
+        bossCreate();
     }
 
     //check player health
@@ -227,8 +307,17 @@ setInterval(() => {
 
 }, 1000 / 60);
 
+function bossCreate(){
+    console.log("boss create")
+    if(bossSpawned == false){
+        console.log("boss spawning")
+        bosses.push(spawnBoss());
+        bossSpawned = true;
+        bosses[0].draw();
+    }
+}
 
-
+var bossSpawned = false;
 const box = document.querySelector(".game");
 
 
