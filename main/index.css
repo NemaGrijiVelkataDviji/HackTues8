@@ -1,9 +1,9 @@
 body {
     
-    background-color: rgb(30, 5, 35);
+    background-image: url("../Images/spacestars2.png");
+    width:100%;
     margin: 0;
     padding: 0;
-    height: 40vmin;
 }
 
 .solarSystem {
@@ -28,8 +28,8 @@ body {
 }
   
 #m-orbit {
-    height: 10vmin;
-    width: 10vmin;
+    height: 5vmin;
+    width: 5vmin;
 }
 
 #sun {
@@ -43,13 +43,13 @@ body {
 }
   
 #moon {
-    border: 3px solid rgb(254,252,215);
+    border: 3px solid rgb(156, 140, 140);
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 5vmin;
-    width: 5vmin;
-    background-color: white;
+    height: 1.5vmin;
+    width: 1.5vmin;
+    background-color: rgb(156, 140, 140);
 }
   
 #mercury {
@@ -152,12 +152,12 @@ h1 {
     margin-bottom: 0px;
     margin-right: 0px;
     margin-left: 0px;
-    background-image: url("../Images/title_background.jpg");
+    /*background-image: url("../Images/title_background.jpg");*/
 
 }
 
 .btn {
-    background-image: url("../Images/title_background.jpg");
+    background-image: url("../Images/spacestars2.png");
     color: bisque;
     text-transform: uppercase;
     text-shadow: 6px 6px 10px purple;
