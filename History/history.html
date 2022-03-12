@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Constellations</title>
+        <link rel="stylesheet" type="text/css" href="constellations.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div id="header">
+            <h1>Constellations</h1>
+            <div class="dropdown">
+                <button class="btn"><i class="fa fa-bars"></i> Menu</button>
+                <div class="dropdown-content">
+                    <a href="../main/index.html"><i class="fa fa-home"></i> Home</a>
+                    <a href="../SpaceInvaders/SpaceInvaders.html"><i class="fa fa-rocket"></i> Space Invaders</a>
+                    <a href="#"><i class="fa fa-leanpub"></i> History Album</a>
+                </div> 
+            </div>
+        </div>
+        <div>
+            <div class="modal" id="modal">
+                    <div class="modal-content">
+                        <div id="modal-header">
+                            <h3 id="modal-title">Info</h3>
+                        </div>
+                        <div id="modal-content">
+                            <p id="modal-info">Content</p>
+                        </div>
+                        <span class="close" onclick="modalClose()">&times;</span>
+                    </div>
+            </div>
+        </div>
+    </body>
+    <script src="../History/history.js"></script>
+    <script src="../main/wikiAPI.js"></script>
+</html>

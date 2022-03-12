@@ -79,7 +79,7 @@ var player = {
     x : GAME_WIDTH - 750,
     y : GAME_HEIGHT - 100,
     health : 100,
-    score: 0,
+    score: 30,
     element : document.createElement("img"),
     draw(){
         this.element.style.position = "relative";
@@ -182,7 +182,7 @@ function loadBosses(){
         width: 200,
         height: 140,
         offset: 60,
-        name: "Mercury"
+        name: "Mercury (planet)"
     };
     bossVariations.push(boss1);
 
@@ -277,6 +277,8 @@ function loadBosses(){
 }
 
 let k = 0;
+var wikiReq = false;
+
 setInterval(() => {
     
     player.draw();
@@ -328,7 +330,11 @@ setInterval(() => {
             }
             enemies.splice(0, enemies.length); 
             //PLANET INFO HERE
-                //planet name is bosses[0].element.name
+            if(wikiReq == true){
+                wikiContent(bosses[0].name);
+                wikiReq = false;
+            }
+            //planet name is bosses[0].element.name
             
         }else if(infoTime == false){
             spawnenemies = true;
@@ -382,6 +388,8 @@ setInterval(() => {
         scoreboard.drawScore();
         bossCreate();
         infoTime = true;
+        wikiReq = true;
+        //console.log();
         modal.style.display = "block";
     }
 
@@ -395,6 +403,7 @@ setInterval(() => {
     
 
 }, 1000 / 60);
+
 
 var modal = document.getElementById("modal");
 var span = document.getElementsByClassName("close")[0];
