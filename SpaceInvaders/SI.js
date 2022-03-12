@@ -294,6 +294,7 @@ setInterval(() => {
             fireballs.splice(ia, 1);
         }
     }
+
     //spawn enemies
     k++;
     if(k >= 60 && spawnenemies == true){
@@ -316,6 +317,8 @@ setInterval(() => {
         }
     }
 
+    
+
     //pause game on boss spawn
     if(bossSpawned == true){
         if(infoTime == true){
@@ -326,7 +329,6 @@ setInterval(() => {
             enemies.splice(0, enemies.length); 
             //PLANET INFO HERE
                 //planet name is bosses[0].element.name
-                console.log("info");
             
         }else if(infoTime == false){
             spawnenemies = true;
