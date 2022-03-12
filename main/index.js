@@ -1,9 +1,9 @@
 const sun = document.querySelector('.star');
 
 const planets = document.querySelectorAll('.planet');
-const p_radii = [11,15,25,35,50,65,80,100];
+const p_radii = [13,20,30,40,50,60,70,80];
 let p_radians = new Array(8).fill(0);
-let p_velocities = [0.8, 0.59, 0.5, 0.4, 0.22, 0.16, 0.12, 0.09];
+let p_velocities = [0.4, 0.5, 0.45, 0.4, 0.25, 0.20, 0.15, 0.10];
 
 const moon = document.querySelector('.moon');
 const m_radius = 10;
@@ -18,7 +18,7 @@ p_orbits.forEach((p_orbit, index)=>{
 	p_orbit.style.width = `${p_radii[index]}vmin`;
 })
 
-setInterval( ()=> {
+setInterval(()=> {
   planets.forEach( (planet, index)=>{
     planet.style.left = `${Math.cos(p_radians[index]) * p_radii[index]}vmin`;
     planet.style.top = `${Math.sin(p_radians[index]) * p_radii[index]}vmin`;
