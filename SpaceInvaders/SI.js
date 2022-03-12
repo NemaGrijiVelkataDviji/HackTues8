@@ -30,17 +30,39 @@ function playerControlls(key){
         fireballs.push(makeFireball());
     }
 
-    if(keyNum == KEY_LEFT){
-        player.x -= 10;
+    if(keyNum == KEY_LEFT && player.x > -20){
+        player.x -= 20;
     }
-    if(keyNum == KEY_RIGHT){
-        player.x += 10;
+    if(keyNum == KEY_RIGHT && player.x < 1200){
+        player.x += 20;
+    }
+}
+
+
+var scoreboard = {
+    element: document.createElement("txt"),
+    x: 800,
+    drawScore() {
+        this.element.className = "scoreboard"
+        this.element.font = "64px Arial";
+        this.element.fillStyle = "#0095DD";
+        this.element.textContent = `${player.score}`;
+        this.element.style.width = "120px";
+        this.element.style.height = "60px";
+        this.element.style.position = "absolute";
+        this.element.style.fontSize = "xxx-large";
+        this.element.style.color = "deepskyblue";
+        this.element.style.left = "1200px";
+        this.element.style.top = "15px"
+        box.appendChild(this.element);
     }
 }
 
 var player = {
     x : GAME_WIDTH - 750,
     y : GAME_HEIGHT - 100,
+    health : 100,
+    score: 0,
     element : document.createElement("img"),
     draw(){
         this.element.style.position = "relative";
@@ -55,8 +77,8 @@ var player = {
 var fireballs = [];
 function makeFireball(){
     var fireball = {
-        x: player.x,
-        y: player.y,
+        x: player.x + 3,
+        y: player.y - 115,
         element : document.createElement("img"),
         draw(){
             this.element.src = '../images/fireball-removebg-preview.png';
@@ -82,7 +104,6 @@ function createEnemy(){
         draw(){
             this.element.src = '../images/alien_spaceship.png';
             this.element.style.position = 'absolute';
-            let randX = generateRandom(1100);
             this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
             setSize(this.element, 250);
             box.appendChild(this.element);
@@ -135,44 +156,74 @@ function loadBosses(){
     bossVariations.push(boss3);
 }
 
-
+let k = 0;
 setInterval(() => {
     
     //console.log(player.x);
     player.draw();
 
     //draw balls
-    for(var i = 0; i < fireballs.length; i++){
+    for(let i = 0; i < fireballs.length; i++){
 
         fireballs[i].draw();
     }
     //move balls
-    for(var ia = 0; ia < fireballs.length; ia++){
-        fireballs[ia].y -= 2;
+    for(let ia = 0; ia < fireballs.length; ia++){
+        fireballs[ia].y -= 8;
         if(fireballs[ia].y <= -80){
             box.removeChild(fireballs[ia].element);
             fireballs.splice(ia, 1);
         }
     }
     //spawn enemies
-    for(var k = 0; k <= 60; k++){
-        if(k == 60){
-            
-        }
+    
+    k++;
+    if(k == 60){
+        enemy = createEnemy();
+        enemy.x = generateRandom(1190) -195;
+        enemies.push(enemy);
+        k = 0;
+    }
+    for(let ka = 0; ka < enemies.length; ka++){
+        
+        enemies[ka].draw();
     }
     //move enemies
-    for(var j = 0; j < fireballs.length; j++){
-        //enemies[j].y += 2;
-       // if(enemies[j].y >= 750){
-            //box.removeChild(enemies[j]);
-       // }
+    for(let j = 0; j < enemies.length; j++){
+        console.log(enemies[j].y);
+        enemies[j].y += 2;
+        if(enemies[j].y >= 780){
+            player.health -= 10;
+            box.removeChild(enemies[j].element);
+            enemies.splice(j, 1);
+        }
     }
 
     //check collisions
     for(let i = 0; i < fireballs.length; i++){
-
+        //check enemy collision
+        for(let k = 0; k < enemies.length; k++){
+            if (fireballs[i].x < enemies[k].x + 260 &&
+                fireballs[i].x - 110 > enemies[k].x &&
+                fireballs[i].y < enemies[k].y + 50 &&
+                fireballs[i].y + 60 > enemies[k].y) {
+                    player.score += 1;
+                    box.removeChild(enemies[k].element);
+                    enemies.splice(k, 1);
+                    box.removeChild(fireballs[i].element);
+                    fireballs.splice(i, 1);
+             }
+        }
     }
 
+    //check player health
+    //if(player.health <= 0){
+        //die
+    //}
+
+    //update score
+    scoreboard.drawScore();
+    
 
 }, 1000 / 60);
 
