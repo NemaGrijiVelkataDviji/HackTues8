@@ -64,9 +64,9 @@ function wikiContent(element){
     var pageId = Object.keys(data.query.pages)
 
     modalTitle = data.query.pages[pageId].title;
+    document.getElementById("modal-title").innerHTML = modalTitle;
     modalContent = data.query.pages[pageId].extract;
-    
-    //createP(pageTitle);
+    document.getElementById("modal-content").innerHTML = modalContent;
 
     console.log(modalTitle);
     console.log(modalContent);
