@@ -17,6 +17,24 @@ function generateRandom(maxLimit){
     return rand;
 }
 
+
+ var down = [];
+ document.addEventListener('keydown', function(event) {
+    if (down[event.key]){
+      return;
+    } else {
+     //do the normal things you do when you get key presses
+     if(event.key == 'f'){
+        fireballs.push(makeFireball());
+     }
+    down[event.key]=true;
+    }
+  }, true);
+  document.addEventListener('keyup', function(event) {
+    down[event.key]=false;
+     //do the normal things you do when you get key releases
+  }, true);
+
 function playerControlls(key){
     let keyNum;
 
@@ -26,14 +44,10 @@ function playerControlls(key){
         keyNum = key.which;
     }
 
-    if(keyNum == FIRE_KEY){
-        fireballs.push(makeFireball());
-    }
-
-    if(keyNum == KEY_LEFT && player.x > -20){
+    if(keyNum == KEY_LEFT && player.x > -10){
         player.x -= 20;
     }
-    if(keyNum == KEY_RIGHT && player.x < 1200){
+    if(keyNum == KEY_RIGHT && player.x < 1190){
         player.x += 20;
     }
 }
@@ -249,7 +263,6 @@ function loadBosses(){
 let k = 0;
 setInterval(() => {
     
-    //console.log(player.x);
     player.draw();
 
     //draw balls
@@ -259,7 +272,7 @@ setInterval(() => {
     }
     //move balls
     for(let ia = 0; ia < fireballs.length; ia++){
-        fireballs[ia].y -= 8;
+        fireballs[ia].y -= 13;
         if(fireballs[ia].y <= -80){
             box.removeChild(fireballs[ia].element);
             fireballs.splice(ia, 1);
@@ -267,7 +280,7 @@ setInterval(() => {
     }
     //spawn enemies
     k++;
-    if(k == 60 && bossSpawned == false){
+    if(k >= 60 && spawnenemies == true){
         enemy = createEnemy();
         enemy.x = generateRandom(1190) -195;
         enemies.push(enemy);
@@ -275,7 +288,6 @@ setInterval(() => {
     }
     
     for(let ka = 0; ka < enemies.length; ka++){
-        
         enemies[ka].draw();
     }
     //move enemies
@@ -313,21 +325,28 @@ setInterval(() => {
                     fireballs.splice(i, 1);
                     bosses[0].health -= 10;
                     if(bosses[0].checkhealth()){
-                        console.log("boss collision");
                         player.score += 10;
                         box.removeChild(bosses[0].element);
                         bosses.splice(0, 1);
+                        //boss is dead (insert info)
+                        spawnenemies = false;
+                        for(let b = 0; b < enemies.length; b++){
+                            box.removeChild(enemies[b].element);
+                        }
+                        enemies.splice(0, enemies.length); 
+                        //PLANET INFO HERE
+
+
+                        //game starts again
+                        spawnenemies = true;
+                        bossSpawned = false;
                     }
              }
         }
     }
 
     //spawn boss
-    if(player.score == 10){
-        for(let p = 0; p < enemies.length; p++){
-            box.removeChild(enemies[p].element);
-            enemies.splice(p, 1);
-        }
+    if(player.score % 5 == 0 && bossSpawned == false && player.score != 0){
         scoreboard.drawScore();
         bossCreate();
     }
@@ -344,16 +363,14 @@ setInterval(() => {
 }, 1000 / 60);
 
 function bossCreate(){
-    console.log(bossSpawned)
     if(bossSpawned == false){
-        console.log("boss create")
-        console.log("boss spawning")
         bosses.push(spawnBoss());
         bossSpawned = true;
         bosses[0].draw();
     }
 }
 
+var spawnenemies = true;
 var bossSpawned = false;
 const box = document.querySelector(".game");
 
