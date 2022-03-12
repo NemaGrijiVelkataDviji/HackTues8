@@ -3,13 +3,10 @@
     <head>
         <meta charset="UTF-8">
         <title>Constellations</title>
-        <link rel="stylesheet" type="text/css" href="index.css">
-        <link rel="stylesheet" type="text/css" href="constellations.js">
         <link rel="stylesheet" type="text/css" href="constellations.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
-        <script src="index.js"></script>
         <div id="header">
             <h1>Constellations</h1>
             <div class="dropdown">
@@ -18,34 +15,35 @@
                     <a href="index.html"><i class="fa fa-home"></i> Home</a>
                     <a href="#"><i class="fa fa-rocket"></i> Space Invaders</a>
                     <a href="#"><i class="fa fa-leanpub"></i> History Album</a>
-                </div>
-              </div>
-        <div id="solarSystem">
-            <canvas id="canvasId"/>
+                </div> 
+            </div>
         </div>
-          
-        <img src="stars3.jpg" alt="constellations" usemap="#constellations" width="482" height="480">
-
-        <map name="constellations">
-            <area shape="poly" coords="60,130,130,50,190,150,150,180" alt="aries" onclick="objInfo(this)">
-            <area shape="poly" coords="130,50,240,20,240,130,190,150" alt="taurus" onclick="objInfo(this)">
-            <area shape="poly" coords="240,20,350,50,300,140,240,130" alt="gemini" onclick="objInfo(this)">
-            <area shape="poly" coords="350,50,430,130,340,180,300,140" alt="cancer" onclick="objInfo(this)">
-            <area shape="poly" coords="430,130,460,240,350,240,340,180" alt="leo" onclick="objInfo(this)">
-            <area shape="poly" coords="460,240,420,340,330,290,350,240" alt="virgo" onclick="objInfo(this)">
-            <area shape="poly" coords="420,340,340,420,300,330,330,290" alt="libra" onclick="objInfo(this)">
-            <area shape="poly" coords="340,420,240,450,240,340,300,330" alt="scorpio" onclick="objInfo(this)">
-            <area shape="poly" coords="240,450,130,420,190,330,240,340" alt="sagittarius" onclick="objInfo(this)">
-            <area shape="poly" coords="130,420,60,340,150,300,190,330" alt="capricorn" onclick="objInfo(this)">
-            <area shape="poly" coords="60,340,30,240,140,240,150,300" alt="aquarius" onclick="objInfo(this)">
-            <area shape="poly" coords="30,240,60,130,150,180,140,240" alt="pisces" onclick="objInfo(this)">
-        </map>
-
-        <script type="text/javascript">
-            function showModal() {
-    
-                var modal = $find("modalpopup");
-                modal.hide(); }
-        constellations.getElementById('pnlPopup').style.visibility = "hidden"; </script>
+        <div>
+            <div class="constellations">
+                <div class="constellations zodiac" id="aquaris"><img src="../Images/aquaris.png"></div>
+                <div class="constellations zodiac" id="aries"><img src="../Images/aries.png"></div>
+                <div class="constellations zodiac" id="cancer"><img src="../Images/cancer.png"></div>
+                <div class="constellations zodiac" id="capricorn"><img src="../Images/capricorn.png"></div>
+                <div class="constellations zodiac" id="gemini"><img src="../Images/gemini.png"></div>
+                <div class="constellations zodiac" id="leo"><img src="../Images/leo.png"></div>
+                <div class="constellations zodiac" id="libra"><img src="../Images/libra.png"></div>
+                <div class="constellations zodiac" id="pisces"><img src="../Images/pisces.png"></div>
+                <div class="constellations zodiac" id="sagittarius"><img src="../Images//sagittarius.png"></div>
+                <div class="constellations zodiac" id="scorpio"><img src="../Images/scorpio.png"></div>
+                <div class="constellations zodiac" id="taurus"><img src="../Images/taurus.png"></div>
+                <div class="constellations zodiac" id="virgo"><img src="../Images/virgo.png"></div>
+            </div>
+            <div class="modal" id="modal">
+                    <div class="modal-content">
+                        <div id="modal-header">
+                            <h3 id="modal-title">Info</h3>
+                        </div>
+                        <div id="modal-content">
+                            <p id="modal-info">Content</p>
+                        </div>
+                        <span class="close" onclick="modalClose()">&times;</span>
+                    </div>
+            </div>
+        </div>
     </body>
 </html>
