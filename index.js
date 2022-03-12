@@ -46,7 +46,9 @@ var clicks = 0;
 
 var modal = document.getElementById("modal");
 var span = document.getElementsByClassName("close")[0];
-var info = document.querySelectorAll('.info');
+var header = document.getElementById("modal-content");
+
+console.log(header);
 
 function objInfo(element){
     clicks += 1;
@@ -62,7 +64,7 @@ function objInfo(element){
         modal.style.display = "block";
 		
 		var xhr = new XMLHttpRequest();
-		var searchURL = "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles=";
+		var searchURL = "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&origin=*&rvprop=content&format=json&titles=";
 		console.log(element.getAttribute('name'));
 		var term = element.getAttribute('name');
 		var url = searchURL + term;
@@ -72,15 +74,13 @@ function objInfo(element){
 
 		xhr.onload = function(){
 			var data = JSON.parse(this.response);
-
-			console.log(data);
-			console.log(data.query.pages);
-			for(var i in data.query.pages){
-				console.log(data.query.pages[i].titles);
-			}
+			var pageId = Object.keys(data.query.pages);
+			
+			let node = data.query.pages[pageId].title;
 		}
 
 		xhr.send();
+		
 	}
     if((clicks % 2) == 0){
         m_velocity = buf_m_vel;
