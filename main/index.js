@@ -1,14 +1,14 @@
-const stars = document.querySelectorAll('.star');
+const sun = document.querySelectorAll('#sun');
 
 const planets = document.querySelectorAll('.planet');
-const p_radii = [11,15,25,35,50,65,80,100];
+const p_radii = [13,20,30,40,50,60,70,80];
 let p_radians = new Array(8).fill(0);
-let p_velocities = [0.8, 0.59, 0.5, 0.4, 0.22, 0.16, 0.12, 0.09];
+let p_velocities = [0.4, 0.5, 0.45, 0.4, 0.25, 0.20, 0.15, 0.10];
 
 const moon = document.querySelector('#moon');
-const m_radius = 3.2;
+const m_radius = 4.2;
 let m_radians = 0;
-let m_velocity = 3;
+let m_velocity = 0.55;
 
 const p_orbits = document.querySelectorAll('.p-orbit');
 const m_orbit = document.querySelector('#m-orbit');
@@ -18,7 +18,7 @@ p_orbits.forEach((p_orbit, index)=>{
 	p_orbit.style.width = `${p_radii[index]}vmin`;
 })
 
-setInterval( ()=> {
+setInterval(()=> {
   planets.forEach( (planet, index)=>{
     planet.style.left = `${Math.cos(p_radians[index]) * p_radii[index]}vmin`;
     planet.style.top = `${Math.sin(p_radians[index]) * p_radii[index]}vmin`;
@@ -28,10 +28,13 @@ setInterval( ()=> {
 
   moon.style.left = `${earthX() + (Math.cos(m_radians) * m_radius )}vmin`;
   moon.style.top = `${earthY() + (Math.sin(m_radians) * m_radius )}vmin`;
+  moon.style.zIndex = 1;
   m_radians += m_velocity * 0.02;
 
   m_orbit.style.left = `${earthX()}vmin`;
   m_orbit.style.top = `${earthY()}vmin`;
+
+  sun.style.zIndex = 1;
 }, 1000/60);
 
 function earthX(){

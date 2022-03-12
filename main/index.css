@@ -28,109 +28,110 @@ body {
 }
   
 #m-orbit {
-    height: 3.2vmin;
-    width: 3.2vmin;
+    height: 4.2vmin;
+    width: 4.2vmin;
 }
 
 #sun {
-    border: 10vimn solid orange;
+    border: 10vimn solid rgb(249, 215, 28);
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     height: 6vmin;
     width: 6vmin;
-    background-color: orange;
+    background-color:rgb(249, 215, 28);
 }
   
 #moon {
-    border: 3px solid whitesmoke;
+    border: 3px solid rgb(254,252,215);
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 0.5vmin;
-    width: 0.5vmin;
-    background-color: white;
+    height: 1.35vmin;
+    width: 1.35vmin;
+    background-color: rgb(254,252,215);
 }
   
 #mercury {
-    border: 3px solid red;
-    background-color: red;
+    border: 3px solid rgb(112,128,144);
+    background-color: rgb(112,128,144);
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 1vmin;
-    width: 1vmin;
+    height: 1.7vmin;
+    width: 1.7vmin;
 }
   
 #venus {
-    border: 3px solid orangered;
-    background-color: orangered;
+    border: 3px solid rgb(251,230,139);
+    background-color: rgb(251,230,139);
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 1.2vmin;
-    width: 1.2vmin;
+    height: 2.2vmin;
+    width: 2.2vmin;
 }
   
 #earth {
-    border: 3px solid seagreen;
-    background-color: seagreen;
+    border: 3px solid rgb(13,152,186);
+    background-color: rgb(13,152,186);
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 1.6vmin;
-    width: 1.6vmin;
+    height: 2.2vmin;
+    width: 2.2vmin;
 }
   
 #mars {
     
-    border: 3px solid red;
-    background-color: orange;
+    border: 3px solid rgb(198,123,92);
+    background-color: rgb(198,123,92);
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 1.4vmin;
-    width: 1.4vmin;
+    height: 1.9vmin;
+    width: 1.9vmin;
 }
   
 #jupiter {
-    border: 3px solid orangered;
-    background-color: orangered;
+    border: 3px solid rgb(216,202,157);
+    background-color: rgb(216,202,157);
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 4vmin;
-    width: 4vmin;
+    height: 5vmin;
+    width: 5vmin;
+    
 }
   
 #saturn {
-    border: 3px solid orangered;
-    background-color: orangered;
+    border: 3px solid rgb(195,155,119);
+    background-color: rgb(195,155,119);
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 4vmin;
-    width: 4vmin;
+    height: 4.5vmin;
+    width: 4.5vmin;
 }
   
 #uranus {
-    border: 3px solid orangered;
-    background-color: orangered;
+    border: 3px solid rgb(11, 165, 165);
+    background-color: rgb(11, 165, 165);
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 2vmin;
-    width: 2vmin;
+    height: 3vmin;
+    width: 3vmin;
 }
   
 #neptune {
-    border: 3px solid orangered;
-    background-color: orangered;
+    border: 3px solid rgb(16, 134, 134);
+    background-color: rgb(16, 134, 134);
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 1.6vmin;
-    width: 1.6vmin;
+    height: 2.8vmin;
+    width: 2.8vmin;
 }
 
 h1 {
@@ -151,12 +152,12 @@ h1 {
     margin-bottom: 0px;
     margin-right: 0px;
     margin-left: 0px;
-    background-image: url("title_background.jpg");
+    background-image: url("../Images/title_background.jpg");
 
 }
 
 .btn {
-    background-image: url("title_background.jpg");
+    background-image: url("../Images/title_background.jpg");
     color: bisque;
     text-transform: uppercase;
     text-shadow: 6px 6px 10px purple;
@@ -220,15 +221,16 @@ h1 {
   }
   
   .modal-content {
-    background-color: #fefefe;
+    border-radius: 25px;
+    background-color: #b9a7a7;
     margin: 15% auto;
     padding: 20px;
-    border: 10px solid white;
+    border: 10px solid #b9a7a7;
     width: 80%;
   }
   
   .close {
-    color: #aaa;
+    color: black;
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -236,7 +238,7 @@ h1 {
   
   .close:hover,
   .close:focus {
-    color: black;
+    color: rgb(61, 61, 61);
     text-decoration: none;
     cursor: pointer;
   }
