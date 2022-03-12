@@ -2,7 +2,7 @@ var xhr = new XMLHttpRequest();
 var searchURL = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=false&exintro&origin=*&rvprop=content&format=json&titles=";
 
 function wikiContent(element){
-    var term = element.getAttribute('value');
+    var term = element.getAttribute('name');
     var url = searchURL + term;
   
     var modalTitle;

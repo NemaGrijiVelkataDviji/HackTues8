@@ -7,6 +7,7 @@
     <meta name="viewport" content="width-device-width, initial-scale-1.0">
     <title> Space Invaders </title>
     <link rel="stylesheet" href="SpaceInvaders.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body style="position: relative;" onkeydown="playerControlls(event)">
@@ -15,9 +16,9 @@
         <div class="dropdown">
             <a href="../main/index.html"><button class="btn"><i class="fa fa-bars"></i> Menu</button></a>
             <div class="dropdown-content">
-                <a href="#"><i class="fa fa-rocket" ></i> Space Invaders</a>
+                <a href="../main/index.html"><i class="fa fa-home"></i> Home</a>
                 <a href="#"><i class="fa fa-leanpub"></i> History Album</a>
-                <a href="#"><i class="fa fa-star-o"></i> Constellations</a>
+                <a href="../constellations/constellations.html"><i class="fa fa-star-o"></i> Constellations</a>
             </div>
           </div>
     </div>
@@ -27,17 +28,17 @@
 
             <div class="modal" id="modal" onclick="">
                 <div class="modal-content">
+                    <span class="close">&times;</span>
                     <div id="modal-header">
                         <h3 id="modal-title">Info</h3>
                     </div>
                     <div id="modal-content">
                         <p id="modal-info">Content</p>
                     </div>
-                    <span class="close">&times;</span>
                 </div>
             </div>
 
-            <div class="game" style="background-image: url(../images/background1.png); background-repeat: no-repeat;" ></div>
+            <div class="game" style="background-image: url(../Images/spacestars2.png); background-repeat: no-repeat;" ></div>
         </div>
         <script src="SI.js"></script>
         <footer></footer>

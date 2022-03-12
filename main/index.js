@@ -6,7 +6,7 @@ let p_radians = new Array(8).fill(0);
 let p_velocities = [0.4, 0.5, 0.45, 0.4, 0.25, 0.20, 0.15, 0.10];
 
 const moon = document.querySelector('.moon');
-const m_radius = 10;
+const m_radius = 5;
 let m_radians = 0;
 let m_velocity = 1;
 
