@@ -118,9 +118,11 @@ function createEnemy(){
 var bosses = [];
 function spawnBoss(){
     var boss = {
-        x: 0,
+        x: 600,
         y: 0,
         health: 0,
+        width : 0,
+        offset: 0,
         element: document.createElement("img"),
     
         draw(){
@@ -129,6 +131,12 @@ function spawnBoss(){
             this.element.src = currentBoss.img //currentBoss.img;
             this.element.style.position = 'absolute';
             this.health = currentBoss.health;
+            this.width = currentBoss.width;
+            this.offset = currentBoss.offset;
+            this.height = currentBoss.height;
+            setSize(this.element, 250);
+            this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
+
             box.appendChild(this.element);
         },
         
@@ -150,12 +158,18 @@ function loadBosses(){
     let boss1 = {
         img: '../images/mercury.png',
         health: 100,
+        width: 200,
+        height: 140,
+        offset: 60
     };
     bossVariations.push(boss1);
 
     let boss2 = {
         img: '../images/venus.png',
-        heath: 150,
+        health: 150,
+        width: 200,
+        height: 140,
+        offset: 70
     };
 
     bossVariations.push(boss2);
@@ -163,49 +177,70 @@ function loadBosses(){
     
     let boss3 = {
         img: '../images/earth.png',
-        heath: 120,
+        health: 120,
+        width: 195,
+        height: 135,
+        offset: 60
     };
 
     bossVariations.push(boss3);
 
     let boss4 = {
         img: '../images/mars.png',
-        heath: 120,
-    };
+        health: 120,
+        width: 200,
+        height: 140,
+        offset: 70
+    }
 
     bossVariations.push(boss4);
 
     let boss5 = {
         img: '../images/jupiter.png',
-        heath: 120,
+        health: 120,
+        width: 190,
+        height: 130,
+        offset: 60
     };
 
     bossVariations.push(boss5);
     
     let boss6 = {
         img: '../images/saturn.png',
-        heath: 120,
+        health: 120,
+        width: 200,
+        height: 80,
+        offset: 60
     };
 
     bossVariations.push(boss6);
     
     let boss7 = {
         img: '../images/uranus.png',
-        heath: 120,
+        health: 120,
+        width: 200,
+        height: 140,
+        offset: 70
     };
 
     bossVariations.push(boss7);
     
     let boss8 = {
-        img: '../images/neptun.png',
-        heath: 120,
+        img: '../images/neptune.png',
+        health: 120,
+        width: 190,
+        height: 140,
+        offset: 60
     };
     
     bossVariations.push(boss8);
 
     let boss9 = {
         img: '../images/sun.png',
-        heath: 120,
+        health: 120,
+        width: 180,
+        height: 90,
+        offset: 60
     };
     
     bossVariations.push(boss9);
@@ -232,7 +267,7 @@ setInterval(() => {
     }
     //spawn enemies
     k++;
-    if(k == 60 ){
+    if(k == 60 && bossSpawned == false){
         enemy = createEnemy();
         enemy.x = generateRandom(1190) -195;
         enemies.push(enemy);
@@ -270,14 +305,15 @@ setInterval(() => {
         }
         //check boss collision
         if(bossSpawned == true){
-            if (fireballs[i].x < bosses[0].x + 800 &&
-                fireballs[i].x - 110 > bosses[0].x &&
-                fireballs[i].y < bosses[0].y + 50 &&
+            if (fireballs[i].x < bosses[0].x + bosses[0].width &&
+                fireballs[i].x > bosses[0].x - bosses[0].offset &&
+                fireballs[i].y < bosses[0].y + bosses[0].height &&
                 fireballs[i].y + 60 > bosses[0].y) {
                     box.removeChild(fireballs[i].element);
                     fireballs.splice(i, 1);
                     bosses[0].health -= 10;
                     if(bosses[0].checkhealth()){
+                        console.log("boss collision");
                         player.score += 10;
                         box.removeChild(bosses[0].element);
                         bosses.splice(0, 1);
@@ -308,8 +344,9 @@ setInterval(() => {
 }, 1000 / 60);
 
 function bossCreate(){
-    console.log("boss create")
+    console.log(bossSpawned)
     if(bossSpawned == false){
+        console.log("boss create")
         console.log("boss spawning")
         bosses.push(spawnBoss());
         bossSpawned = true;
