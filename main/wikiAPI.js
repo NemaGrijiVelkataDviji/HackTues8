@@ -1,5 +1,5 @@
 var xhr = new XMLHttpRequest();
-var searchURL = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=false&exintro&exsentences=5&origin=*&format=json&titles=";
+var searchURL = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=true&exintro&exsentences=5&origin=*&format=json&titles=";
 
 function wikiContent(element){
   //console.log(element);
