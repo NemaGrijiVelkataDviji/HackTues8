@@ -17,39 +17,41 @@ function generateRandom(maxLimit){
     return rand;
 }
 
-
  var down = [];
- document.addEventListener('keydown', function(event) {
-    if (down[event.key]){
-      return;
-    } else {
-     //do the normal things you do when you get key presses
-     if(event.key == 'f'){
-        fireballs.push(makeFireball());
-     }
-    down[event.key]=true;
-    }
-  }, true);
-  document.addEventListener('keyup', function(event) {
-    down[event.key]=false;
-     //do the normal things you do when you get key releases
-  }, true);
+    document.addEventListener('keydown', function(event) {
+        if (down[event.key] && infoTime == false){
+          return;
+        } else {
+         //do the normal things you do when you get key presses
+         if(event.key == 'f' && infoTime == false){
+            fireballs.push(makeFireball());
+         }
+        down[event.key]=true;
+        }
+      }, true);
+      document.addEventListener('keyup', function(event) {
+        down[event.key]=false;
+         //do the normal things you do when you get key releases
+      }, true);
+ 
 
 function playerControlls(key){
     let keyNum;
-
-    if(window.event){
-        keyNum = key.keyCode;
-    } else if (key.which){
-        keyNum = key.which;
+    if(infoTime == false){
+        if(window.event){
+            keyNum = key.keyCode;
+        } else if (key.which){
+            keyNum = key.which;
+        }
+    
+        if(keyNum == KEY_LEFT && player.x > -10){
+            player.x -= 20;
+        }
+        if(keyNum == KEY_RIGHT && player.x < 1190){
+            player.x += 20;
+        }
     }
-
-    if(keyNum == KEY_LEFT && player.x > -10){
-        player.x -= 20;
-    }
-    if(keyNum == KEY_RIGHT && player.x < 1190){
-        player.x += 20;
-    }
+    
 }
 
 
@@ -68,6 +70,7 @@ var scoreboard = {
         this.element.style.color = "deepskyblue";
         this.element.style.left = "1200px";
         this.element.style.top = "15px"
+        const box = document.querySelector(".game");
         box.appendChild(this.element);
     }
 }
@@ -83,6 +86,7 @@ var player = {
         this.element.src = '../images/red_ship-removebg-preview.png';
         setSize(this.element, 120);
         this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
+        const box = document.querySelector(".game");
         box.appendChild(this.element);
     }
 }
@@ -100,7 +104,7 @@ function makeFireball(){
             this.element.style.display = 'flex';
             setSize(this.element, 125);
             this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
-            //setPosition(this.element, this.x, this.y);
+            const box = document.querySelector(".game");
             box.appendChild(this.element);
         }
     }
@@ -120,6 +124,7 @@ function createEnemy(){
             this.element.style.position = 'absolute';
             this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
             setSize(this.element, 250);
+            const box = document.querySelector(".game");
             box.appendChild(this.element);
         },
     }
@@ -137,6 +142,7 @@ function spawnBoss(){
         health: 0,
         width : 0,
         offset: 0,
+        name: 'asd',
         element: document.createElement("img"),
     
         draw(){
@@ -147,10 +153,11 @@ function spawnBoss(){
             this.health = currentBoss.health;
             this.width = currentBoss.width;
             this.offset = currentBoss.offset;
+            this.name = currentBoss.name;
             this.height = currentBoss.height;
             setSize(this.element, 250);
             this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
-
+            const box = document.querySelector(".game");
             box.appendChild(this.element);
         },
         
@@ -174,7 +181,8 @@ function loadBosses(){
         health: 100,
         width: 200,
         height: 140,
-        offset: 60
+        offset: 60,
+        name: "Mercury"
     };
     bossVariations.push(boss1);
 
@@ -183,7 +191,8 @@ function loadBosses(){
         health: 150,
         width: 200,
         height: 140,
-        offset: 70
+        offset: 70,
+        name: "Venus"
     };
 
     bossVariations.push(boss2);
@@ -194,7 +203,8 @@ function loadBosses(){
         health: 120,
         width: 195,
         height: 135,
-        offset: 60
+        offset: 60,
+        name: "Earth"
     };
 
     bossVariations.push(boss3);
@@ -204,7 +214,8 @@ function loadBosses(){
         health: 120,
         width: 200,
         height: 140,
-        offset: 70
+        offset: 70,
+        name: "Mars"
     }
 
     bossVariations.push(boss4);
@@ -214,7 +225,8 @@ function loadBosses(){
         health: 120,
         width: 190,
         height: 130,
-        offset: 60
+        offset: 60,
+        name: "Jupiter"
     };
 
     bossVariations.push(boss5);
@@ -224,7 +236,8 @@ function loadBosses(){
         health: 120,
         width: 200,
         height: 80,
-        offset: 60
+        offset: 60,
+        name: "Saturn"
     };
 
     bossVariations.push(boss6);
@@ -234,7 +247,8 @@ function loadBosses(){
         health: 120,
         width: 200,
         height: 140,
-        offset: 70
+        offset: 70,
+        name: "Uranus"
     };
 
     bossVariations.push(boss7);
@@ -244,7 +258,8 @@ function loadBosses(){
         health: 120,
         width: 190,
         height: 140,
-        offset: 60
+        offset: 60,
+        name: "Neptune"
     };
     
     bossVariations.push(boss8);
@@ -254,7 +269,8 @@ function loadBosses(){
         health: 120,
         width: 180,
         height: 90,
-        offset: 60
+        offset: 60,
+        name: "Sun"
     };
     
     bossVariations.push(boss9);
@@ -300,6 +316,22 @@ setInterval(() => {
         }
     }
 
+    //pause game on boss spawn
+    if(bossSpawned == true){
+        if(infoTime == true){
+            spawnenemies = false;
+            for(let b = 0; b < enemies.length; b++){
+                box.removeChild(enemies[b].element);
+            }
+            enemies.splice(0, enemies.length); 
+            //PLANET INFO HERE
+                //planet name is bosses[0].element.name
+                console.log("info");
+            
+        }else if(infoTime == false){
+            spawnenemies = true;
+        }
+    }
     //check collisions
     for(let i = 0; i < fireballs.length; i++){
         //check enemy collision
@@ -316,7 +348,7 @@ setInterval(() => {
              }
         }
         //check boss collision
-        if(bossSpawned == true){
+        if(bossSpawned){
             if (fireballs[i].x < bosses[0].x + bosses[0].width &&
                 fireballs[i].x > bosses[0].x - bosses[0].offset &&
                 fireballs[i].y < bosses[0].y + bosses[0].height &&
@@ -326,29 +358,29 @@ setInterval(() => {
                     bosses[0].health -= 10;
                     if(bosses[0].checkhealth()){
                         player.score += 10;
-                        box.removeChild(bosses[0].element);
-                        bosses.splice(0, 1);
-                        //boss is dead (insert info)
-                        spawnenemies = false;
+                        //boss is dead 
+                        /*spawnenemies = false;
                         for(let b = 0; b < enemies.length; b++){
                             box.removeChild(enemies[b].element);
                         }
-                        enemies.splice(0, enemies.length); 
-                        //PLANET INFO HERE
-
-
-                        //game starts again
-                        spawnenemies = true;
+                        enemies.splice(0, enemies.length);*/
+                        
+                        box.removeChild(bosses[0].element);
+                        bosses.splice(0, 1);
+                        //spawnenemies = true;
                         bossSpawned = false;
                     }
              }
         }
+        
     }
 
     //spawn boss
-    if(player.score % 5 == 0 && bossSpawned == false && player.score != 0){
+    if(player.score % 30 == 0 && bossSpawned == false && player.score != 0){
         scoreboard.drawScore();
         bossCreate();
+        infoTime = true;
+        modal.style.display = "block";
     }
 
     //check player health
@@ -362,6 +394,16 @@ setInterval(() => {
 
 }, 1000 / 60);
 
+var modal = document.getElementById("modal");
+var span = document.getElementsByClassName("close")[0];
+
+span.onclick = () => {
+    modal.style.display = "none";
+    infoTime = false;
+}
+
+
+
 function bossCreate(){
     if(bossSpawned == false){
         bosses.push(spawnBoss());
@@ -370,6 +412,7 @@ function bossCreate(){
     }
 }
 
+var infoTime = false;
 var spawnenemies = true;
 var bossSpawned = false;
 const box = document.querySelector(".game");
