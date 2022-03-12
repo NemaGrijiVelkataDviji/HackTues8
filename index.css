@@ -28,17 +28,17 @@ body {
 }
   
 #m-orbit {
-    height: 0.8vmin;
-    width: 0.8vmin;
+    height: 3.2vmin;
+    width: 3.2vmin;
 }
-  
+
 #sun {
-    border: 2.5vimn solid orange;
+    border: 10vimn solid orange;
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 2.5vmin;
-    width: 2.5vmin;
+    height: 6vmin;
+    width: 6vmin;
     background-color: orange;
 }
   
@@ -47,8 +47,8 @@ body {
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 0.1vmin;
-    width: 0.1vmin;
+    height: 0.5vmin;
+    width: 0.5vmin;
     background-color: white;
 }
   
@@ -58,8 +58,8 @@ body {
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 0.4vmin;
-    width: 0.4vmin;
+    height: 1vmin;
+    width: 1vmin;
 }
   
 #venus {
@@ -68,8 +68,8 @@ body {
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 0.6vmin;
-    width: 0.6vmin;
+    height: 1.2vmin;
+    width: 1.2vmin;
 }
   
 #earth {
@@ -78,8 +78,8 @@ body {
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 0.8vmin;
-    width: 0.8vmin;
+    height: 1.6vmin;
+    width: 1.6vmin;
 }
   
 #mars {
@@ -89,8 +89,8 @@ body {
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 0.7vmin;
-    width: 0.7vmin;
+    height: 1.4vmin;
+    width: 1.4vmin;
 }
   
 #jupiter {
@@ -99,8 +99,8 @@ body {
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 2vmin;
-    width: 2vmin;
+    height: 4vmin;
+    width: 4vmin;
 }
   
 #saturn {
@@ -109,8 +109,8 @@ body {
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 2vmin;
-    width: 2vmin;
+    height: 4vmin;
+    width: 4vmin;
 }
   
 #uranus {
@@ -119,8 +119,8 @@ body {
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 1vmin;
-    width: 1vmin;
+    height: 2vmin;
+    width: 2vmin;
 }
   
 #neptune {
@@ -129,8 +129,8 @@ body {
     border-radius: 50%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 0.8vmin;
-    width: 0.8vmin;
+    height: 1.6vmin;
+    width: 1.6vmin;
 }
 
 h1 {

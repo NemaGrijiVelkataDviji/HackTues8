@@ -6,16 +6,16 @@ let p_radians = new Array(8).fill(0);
 let p_velocities = [0.8, 0.59, 0.5, 0.4, 0.22, 0.16, 0.12, 0.09];
 
 const moon = document.querySelector('#moon');
-const m_radius = 0.8;
+const m_radius = 3.2;
 let m_radians = 0;
-let m_velocity = 5;
+let m_velocity = 3;
 
 const p_orbits = document.querySelectorAll('.p-orbit');
 const m_orbit = document.querySelector('#m-orbit');
 
 p_orbits.forEach((p_orbit, index)=>{
-  p_orbit.style.height = `${p_radii[index]}vmin`;
-  p_orbit.style.width = `${p_radii[index]}vmin`;
+	p_orbit.style.height = `${p_radii[index]}vmin`;
+	p_orbit.style.width = `${p_radii[index]}vmin`;
 })
 
 setInterval( ()=> {
@@ -23,6 +23,7 @@ setInterval( ()=> {
     planet.style.left = `${Math.cos(p_radians[index]) * p_radii[index]}vmin`;
     planet.style.top = `${Math.sin(p_radians[index]) * p_radii[index]}vmin`;
     p_radians[index] += p_velocities[index] * 0.02;
+	planet.style.zIndex = 1;
   })
 
   moon.style.left = `${earthX() + (Math.cos(m_radians) * m_radius )}vmin`;
@@ -49,10 +50,8 @@ var info = document.querySelectorAll('.info');
 
 function objInfo(element){
     clicks += 1;
-    
-    obj = element.value;
 
-    let buf_m_vel = 5;
+    let buf_m_vel = 3;
     let buf_p_vel = [0.8, 0.59, 0.5, 0.4, 0.22, 0.16, 0.12, 0.09];
 
     if((clicks % 2) == 1){
@@ -61,8 +60,28 @@ function objInfo(element){
             p_velocities[i] = 0;
         }
         modal.style.display = "block";
-        
-    }
+		
+		var xhr = new XMLHttpRequest();
+		var searchURL = "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles=";
+		console.log(element.getAttribute('name'));
+		var term = element.getAttribute('name');
+		var url = searchURL + term;
+		console.log(url);
+
+		xhr.open('GET', url, true);
+
+		xhr.onload = function(){
+			var data = JSON.parse(this.response);
+
+			console.log(data);
+			console.log(data.query.pages);
+			for(var i in data.query.pages){
+				console.log(data.query.pages[i].titles);
+			}
+		}
+
+		xhr.send();
+	}
     if((clicks % 2) == 0){
         m_velocity = buf_m_vel;
         for(let i = 0; i < p_radians.length; i++){
@@ -70,11 +89,6 @@ function objInfo(element){
         };
         modal.style.display = "none";
     }
-
-    console.log(clicks);
-    console.log(m_velocity);
-    console.log(p_velocities);
-    console.log(buf_p_vel);
 };
 
 span.onclick = function(){
