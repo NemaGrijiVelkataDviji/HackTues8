@@ -1,4 +1,16 @@
-var clicks = 0;
+const modal = document.getElementById("modal");
+
+function modalShow(element){
+	modal.style.display = "block";
+	wikiContent(element);
+}
+function modalClose(){
+	modal.style.display = "none";
+}
+
+
+
+/*var clicks = 0;
 
 var modal = document.getElementById("modal");
 var span = document.getElementsByClassName("close")[0];
@@ -39,4 +51,4 @@ function objInfo(element){
 
 span.onclick = function(){
     modal.style.display = "none";
-}
+}*/
